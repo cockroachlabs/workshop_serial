@@ -16,7 +16,7 @@
         <stringProp name="checkQuery">Select 1</stringProp>
         <stringProp name="connectionAge">5000</stringProp>
         <stringProp name="dataSource">pool1</stringProp>
-        <stringProp name="dbUrl">jdbc:postgresql://${__P(pool1,127.0.0.1:26257)}/serialtests?autoReconnect=true&amp;sslmode=disable&amp;ssl=false&amp;ApplicationName=tenrows_readwrite2</stringProp>
+        <stringProp name="dbUrl">jdbc:postgresql://${__P(pool1,127.0.0.1:26257)}/serialtests?autoReconnect=true&amp;sslmode=disable&amp;ssl=false&amp;ApplicationName=tenrows_readwrite3</stringProp>
         <stringProp name="driver">org.postgresql.Driver</stringProp>
         <boolProp name="keepAlive">true</boolProp>
         <stringProp name="password"></stringProp>
@@ -1101,11 +1101,14 @@ SELECT * from tenrows where id = 5;
             <stringProp name="TestPlan.comments">Timer per Thread :: Total QPS  = (threads/(Thread Delay milliseconds)*1000)</stringProp>
           </ConstantTimer>
           <hashTree/>
-          <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="Q1" enabled="true">
+          <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="Q1" enabled="false">
             <stringProp name="dataSource">pool1</stringProp>
             <stringProp name="queryType">Callable Statement</stringProp>
             <stringProp name="query">--SELECT * from tenrows where id = ${__Random(1,10)};
+BEGIN;
+SET TRANSACTION PRIORITY LOW;
 SELECT * from tenrows where id = 5;
+COMMIT;
 --SELECT * from tenrows where id = ${__Random(1,10)};
 
 --SELECT ${__threadNum}, ${__intSum(2,threadNum)}, ${__Random(0,1000)}, now();
@@ -1132,7 +1135,7 @@ SELECT * from tenrows where id = 5;
             <stringProp name="queryType">AutoCommit(false)</stringProp>
             <stringProp name="query">BEGIN;
   SET TRANSACTION PRIORTY LOW;
-  UPDATE tenrows set name=&apos;DARTH VADER&apos; where id = 5;
+  UPDATE tenrows set name=&apos;DARTH VADER&apos; where id in (5,6,7);
 COMMIT;
 
 

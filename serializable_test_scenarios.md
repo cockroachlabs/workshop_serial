@@ -1,6 +1,9 @@
 # Serializable Test Senarios
 This will describe servaral scenarios that can be use for the workshop.
 
+look at this ticket.... https://cockroachdb.zendesk.com/agent/tickets/4980
+timeouts... `set statement_timeout = X`
+
 
 ## Read Only :: Ten Rows
 
