@@ -48,7 +48,9 @@ SQLSTATE: 40001
 
 
 
-## Prefetch update Values to update by PK
+
+
+## Batching Issues /w Wide tables
 Restructure Queries to update directly by PK.... This was a solution from a customer, but not sure it shows the concept real well..... **WORK IN PROGRESS!!!**
 
 
@@ -56,35 +58,33 @@ Example below:
 
 ```sql
 
-CREATE TABLE request_queue (
-    id UUID DEFAULT gen_random_uuid(),
-    company_id INT,
-    active BOOLEAN,
-    req_name STRING,
-    PRIMARY KEY (id)
+CREATE TABLE IOT (
+    id INT,
+    customer_id INT,
+    value1 int,
+    value2 int,
+    ...
+    value50 int
+    PRIMARY KEY (id, customer_id)
 );
 
-CREATE TABLE company (
-    company_id INT,
-    company_name STRING,
-    PRIMARY KEY (id)
-);
+db.Exec(
+  "BEGIN;
 
---  ORIGINAL QUERY
---
-UPDATE request_queue
-SET active = false
-WHERE company_id = ? AND active = true;
+  DELETE FROM customers WHERE id = 1;
 
---  PREFETCH BREAKOUT
---
-SELECT id 
-FROM request_queue
-WHERE company_id = ? AND active = true;
+  DELETE orders WHERE customer = 1;
 
-UPDATE request_queue
-SET active = false
-WHERE id in (<prefetched>);
+  COMMIT;"
+)
+
+BEGIN;
+
+ DELETE FROM customers WHERE id = 1;
+
+ DELETE orders WHERE customer = 1;
+
+COMMIT;
 
 ```
 
