@@ -1,7 +1,7 @@
 # Serial Contention Tests 
 This is to show how writers block readers.  Readers may not have to RETRY, but ranges need to be REFRESHED to get the most current value of there are *write intents* on the same rows.
 
-Create and Populate the ALERTS table to be used by the various tests from [Contention_Update_and_Reads.jmx](#Contention_Update_and_Reads.jmx) with Jmeter....
+Create and Populate the ALERTS table to be used by the various tests from [Contention_Update_and_Reads.jmx](Contention_Update_and_Reads.jmx) with Jmeter....
 
 
 ## DDL creation of alerts table
