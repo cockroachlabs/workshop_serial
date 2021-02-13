@@ -16,7 +16,7 @@
         <stringProp name="checkQuery">Select 1</stringProp>
         <stringProp name="connectionAge">5000</stringProp>
         <stringProp name="dataSource">central</stringProp>
-        <stringProp name="dbUrl">jdbc:postgresql://127.0.0.1:26257/serial?autoReconnect=true&amp;sslmode=disable&amp;ssl=false&amp;ApplicationName=Demo1</stringProp>
+        <stringProp name="dbUrl">jdbc:postgresql://127.0.0.1:26257/serial?autoReconnect=true&amp;sslmode=disable&amp;ssl=false&amp;ApplicationName=Demo4_sfu_2</stringProp>
         <stringProp name="driver">org.postgresql.Driver</stringProp>
         <boolProp name="keepAlive">true</boolProp>
         <stringProp name="password"></stringProp>
@@ -315,7 +315,7 @@
         <boolProp name="exclude_checkbox_state">false</boolProp>
       </kg.apc.jmeter.vizualizers.CorrectedResultCollector>
       <hashTree/>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Demo #1 :: Contention Selects and Updates" enabled="true">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Demo #1 :: Contention Selects and Updates" enabled="false">
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
         <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
           <boolProp name="LoopController.continue_forever">false</boolProp>
@@ -691,7 +691,7 @@ WHERE customer_id=9743;
           </PreciseThroughputTimer>
           <hashTree/>
         </hashTree>
-        <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="bulk_update_limit_100" enabled="true">
+        <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="bulk_update_limit_100" enabled="false">
           <stringProp name="dataSource">central</stringProp>
           <stringProp name="queryType">Callable Statement</stringProp>
           <stringProp name="query">BEGIN;
@@ -771,7 +771,7 @@ COMMIT;</stringProp>
           </PreciseThroughputTimer>
           <hashTree/>
         </hashTree>
-        <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="bulk_update_limit_5000" enabled="false">
+        <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="bulk_update_limit_5000" enabled="true">
           <stringProp name="dataSource">central</stringProp>
           <stringProp name="queryType">Callable Statement</stringProp>
           <stringProp name="query">BEGIN;
@@ -852,7 +852,7 @@ COMMIT;</stringProp>
           <hashTree/>
         </hashTree>
       </hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Demo #3 :: Retries with Updates" enabled="false">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Demo #3 :: Retries with Updates" enabled="true">
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
         <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
           <boolProp name="LoopController.continue_forever">false</boolProp>
@@ -867,7 +867,7 @@ COMMIT;</stringProp>
         <stringProp name="TestPlan.comments">USE CLI to demonstrate Retries ::: Run with update_low and update_high to get two differnt retry errors</stringProp>
       </ThreadGroup>
       <hashTree>
-        <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="update_high" enabled="true">
+        <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="update_high" enabled="false">
           <stringProp name="dataSource">central</stringProp>
           <stringProp name="queryType">Callable Statement</stringProp>
           <stringProp name="query">BEGIN;
@@ -910,7 +910,7 @@ COMMIT;</stringProp>
           </PreciseThroughputTimer>
           <hashTree/>
         </hashTree>
-        <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="update_low" enabled="false">
+        <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="update_low" enabled="true">
           <stringProp name="dataSource">central</stringProp>
           <stringProp name="queryType">Callable Statement</stringProp>
           <stringProp name="query">BEGIN;
@@ -969,7 +969,7 @@ COMMIT;</stringProp>
         <stringProp name="TestPlan.comments">set cluster setting sql.defaults.implicit_select_for_update.enabled=true/false and run with the two differnt updates</stringProp>
       </ThreadGroup>
       <hashTree>
-        <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="update_implicit_nosfu" enabled="true">
+        <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="update_implicit_nosfu" enabled="false">
           <stringProp name="dataSource">central</stringProp>
           <stringProp name="queryType">Callable Statement</stringProp>
           <stringProp name="query">-- Must configure the following:
@@ -1005,7 +1005,7 @@ WHERE customer_id=9743;</stringProp>
           </PreciseThroughputTimer>
           <hashTree/>
         </hashTree>
-        <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="update_implicit" enabled="false">
+        <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="update_implicit" enabled="true">
           <stringProp name="dataSource">central</stringProp>
           <stringProp name="queryType">Callable Statement</stringProp>
           <stringProp name="query">-- Must configure the following:
